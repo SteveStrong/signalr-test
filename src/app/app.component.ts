@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SignalRService } from './signalr.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'signalr-test';
+
+  constructor(private srservice: SignalRService) {
+
+  }
+
+  ngOnInit() {
+    this.srservice.startConnection();
+  }
 }
