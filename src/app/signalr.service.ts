@@ -5,7 +5,8 @@ import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" 
 import { LogLevel } from '@microsoft/signalr';
 import { Subject } from 'rxjs';
 
-
+// https://www.youtube.com/watch?v=m4N41JYrSjw
+// https://www.codemag.com/article/1807061/Build-Real-time-Applications-with-ASP.NET-Core-SignalR
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,15 @@ export class SignalRService {
   private hubConnection: signalR.HubConnection;
 
   public startConnection = () => {
-    const url = 'https://laweb700.azurewebsites.net/documentHub';
-    //const url = ''
-    //const url = 'https://iobtweb.azurewebsites.net/chatHub'
+    let url = '';
+    url = 'https://localhost:5001/documentHub';
+    url = 'https://localhost:44360/documentHub';
+    url = 'https://localhost:8080/documentHub';
+    url = 'https://localhost:8080/chatHub';
+    url = 'https://iobtweb.azurewebsites.net/chatHub'
+
+    // it works - I think the problem was the service plan,  free does not work.
+    url = 'https://laweb700.azurewebsites.net/documentHub';
 
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(url, {
